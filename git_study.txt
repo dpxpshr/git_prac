@@ -6,19 +6,28 @@
 
 2. userA 폴더를 git이 관리하는 폴더로 만들기
 	git init
+
 3. 기본으로 생성되는 master 브랜치를 main 브랜치로 바꾸기
 	git checkout -b main : main이라는 이름의 브랜치로 생성하고, 해당 브랜치로 이동
 	git branch -M main : main 브랜치를 기본 브랜치로 지정
 	git status : 상태확인
+
 4. 파일을 생성하고, add, commit 하기
 	git add <파일명> : 파일을 staging area에 추가
 	git commit : commit에 대한 메시지를 남기기 위한 vi 에디터 실행
 											i : 입력모드 / esc : 입력모드 탈출 / ':' : 명령어 입력 / 명령어 wq : 저장 후 종료
 	git commit -m 'message' : commit을 하고, commit에 대한 간단한 메시지를 기록
 	commit 내역은 git log 명령어를 통해 확인할 수 있다.
+
 5. 파일을 특정 commit 지점으로 되돌리기
 	git reset --soft <되돌릴 commit> : commit 내역을 되돌리고 commit만 취소(Staging area에 파일이 남음)
 	git reset --mixed <되돌릴 commit> : commit 내역을 되돌리고 staging까지 취소
 	git reset --hard <되돌릴 commit> : commit 내역을 되돌리고 파일을 rollback
 	git revert <되돌릴 commit> : 파일을 rollback하고, revert 내역을 남김
-	
+
+6. 파일을 원격 repository(github)에 올리기 //origin : 원격 repository 이름
+	git remote add origin <github repository 주소> : 원격 repository와 연결
+	git pull --allow-unrelated-histories origin main : 원격 저장소의 ignore 파일과 readme 파일을 가져온다.
+			 --allow-unrelated-histories 옵션 : unrelated-histories 병합 불가 오류(첫 pull 시도시 발생)를 허용
+	git push -u origin main 
+				-u : push할 기본 원격 저상소와 브랜치를 기억, 앞으로는 원격 저장소와 브랜치를 작성하지 않아도 되게 한다.
